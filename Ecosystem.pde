@@ -9,6 +9,7 @@ public void setup() {
 
 public void draw() {
   background(220);
+  frameRate(60);
   for (int i = 0; i < food.length; i++) {
     if (food[i] != null && food[i].active) {
   food[i].show();
@@ -19,9 +20,12 @@ public void draw() {
   }
   
   for (int i = 0; i < creature.length; i++) { 
+    if (creature[i] != null && creature[i].active) {
   creature[i].show();
   creature[i].move();
-  creature[i].starve();
+  creature[i].tick(creature[i]);
+  creature[i].starve(creature[i]);
+    }
   }
 }
 private void spawnCreature() {
@@ -34,4 +38,3 @@ private void spawnFood() {
     food[i] = new Food((int)(Math.random()*height),(int)(Math.random()*width));
   }
 }
-//
