@@ -1,11 +1,10 @@
 public class Creature {
   public PVector pos, vel;
-  public int speed = 10;
+  public int speed = 20;
   public float hp = 100.0;
   public final int SIZE = 25;
   public final color COLOR = color(30,30,200);
-  public int foodscore = 0;
-  public int totalfood = 50;
+  public boolean active = true;  
   
   public Creature(int x, int y) {
     pos = new PVector(x,y);
@@ -33,29 +32,24 @@ public boolean canMove() {
   }
   return canMove;
   }
+  public void tick(Creature c) {
+   hp --; 
+  }
   
   public void collides(Food f) {
     double dist = PVector.sub(this.pos,f.pos).mag();
-    if (dist <= this.SIZE / 2 + f.SIZE / 2) {
-      foodscore += 1;
+    if (dist <= this.SIZE / 2 + f.SIZE / 2 && f.active) {
       hp += 50;
-      totalfood -=1;
       f.active = false;
-      System.out.println(hp);
+    System.out.println(hp);
       
     }
   }
-  public void newFood() {
-   if (totalfood ==0) {
-     totalfood += 10;
-   }
-  }
   
-  public void starve() {
-    if (totalfood ==0 && foodscore <= 2) {
-      hp -=100; 
+  public void starve(Creature c) {
+    if (hp<=0) {
+      c.active = false;
       System.out.println(hp);
   }
 }
 }
-
