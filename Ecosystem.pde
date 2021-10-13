@@ -1,5 +1,5 @@
 Creature[] creature = new Creature[50];
-Food[] food = new Food[100];
+Food[] food = new Food[50];
 
 public void setup() {
   size(800,800);
@@ -10,13 +10,18 @@ public void setup() {
 public void draw() {
   background(220);
   for (int i = 0; i < food.length; i++) {
+    if (food[i] != null && food[i].active) {
   food[i].show();
-  for (int j = 0; j < creature.length; j++) {
-  creature.eat(food[j]);
   }
-  for (int i = 0; i < creature.length; i++) {
+  for (int j = 0; j < creature.length; j++) {
+    creature[j].collides(food[i]);
+  }
+  }
+  
+  for (int i = 0; i < creature.length; i++) { 
   creature[i].show();
   creature[i].move();
+  creature[i].starve();
   }
 }
 private void spawnCreature() {
