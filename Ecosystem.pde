@@ -34,3 +34,4 @@ private void spawnFood() {
     food[i] = new Food((int)(Math.random()*height),(int)(Math.random()*width));
   }
 }
+//
