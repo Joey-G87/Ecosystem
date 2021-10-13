@@ -1,5 +1,5 @@
 Creature[] creature = new Creature[50];
-Food[] food = new Food[50];
+Food[] food = new Food[100];
 
 public void setup() {
   size(800,800);
@@ -34,4 +34,3 @@ private void spawnFood() {
     food[i] = new Food((int)(Math.random()*height),(int)(Math.random()*width));
   }
 }
-//
