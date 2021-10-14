@@ -1,21 +1,26 @@
 Creature[] creature = new Creature[50];
 Food[] food = new Food[100];
+Lion lion;
 
 public void setup() {
   size(800,800);
+  lion = new Lion(400,400);
   spawnCreature();
   spawnFood();
 }
 
 public void draw() {
-  background(220);
+  background(0);
   frameRate(60);
+  lion.move();
+  lion.show();
   for (int i = 0; i < food.length; i++) {
     if (food[i] != null && food[i].active) {
   food[i].show();
   }
   for (int j = 0; j < creature.length; j++) {
     creature[j].collides(food[i]);
+    creature[j].attack(lion);
   }
   }
   
