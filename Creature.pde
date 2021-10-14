@@ -42,10 +42,17 @@ public boolean canMove() {
       hp += 50;
       f.active = false;
     System.out.println(hp);
-      
     }
   }
-  
+  public void attack(Lion l) {
+    double dist = PVector.sub(this.pos,l.pos).mag();
+    if (dist <= this.SIZE / 2 + l.SIZE / 2) {
+      hp -=200;
+     text("ROOOAR!!!", 400,400);
+     textSize(50);
+     fill(255,0,0);
+    }
+  }
   public void starve(Creature c) {
     if (hp<=0) {
       c.active = false;
